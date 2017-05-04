@@ -1,0 +1,21 @@
+## Follow-up (transition free)
+## Idea 
+* Calculate everytime when prices[i] < prices[i+1] - cost 
+
+## Code
+
+```
+public int maxProfit(int[] prices, int[] transFee) {
+    if(prices == null || prices.length == 0) {
+        return 0;
+    }
+    int maxProfit = 0;
+    for(int i=1; i < prices.length; i++) {
+        int buy = prices[i-1]+transFee[i-1];
+        int sell = prices[i]-transFee[i-1];
+        if(sell > buy) {
+            maxProfit += sell-buy;
+        }
+    }    
+    return maxProfit;
+}
